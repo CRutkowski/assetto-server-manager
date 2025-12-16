@@ -1,9 +1,11 @@
 Assetto Server Manager
 ======================
 
-[![Build Status](https://travis-ci.org/JustaPenguin/assetto-server-manager.svg?branch=master)](https://travis-ci.org/JustaPenguin/assetto-server-manager) [![Discord](https://img.shields.io/discord/557940238991753223.svg)](https://discordapp.com/invite/6DGKJzB)
-
 A web interface to manage an Assetto Corsa Server.
+
+This repo has been forked from [JustaPenguin/assetto-server-manager](https://github.com/JustaPenguin/assetto-server-manager).
+
+The dependencies from the original project have been updated to more modern versions to fix the docker build.
 
 ## Features
 
