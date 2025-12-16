@@ -1,3 +1,15 @@
+v1.7.12
+-------
+
+Changed:
+
+* Enabled all premium features by default for all builds.
+* Updated repository links to point to the new fork (CRutkowski/assetto-server-manager).
+* Removed donation links and external branding from the UI.
+
+---
+
+
 v1.7.11
 -------
 
@@ -29,7 +41,7 @@ Fixed:
 
 
 v1.7.9
-------A
+------
 
 Added:
 
