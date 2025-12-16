@@ -23,7 +23,6 @@ The dependencies from the original project have been updated to more modern vers
 * Accounts system with different permissions levels
 * Linux and Windows Support!
 
-**If you like Assetto Server Manager, please consider supporting us with a [donation](https://paypal.me/JustaPenguinUK)!**
 
 ## Installation
 
