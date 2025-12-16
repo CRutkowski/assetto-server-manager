@@ -1,3 +1,17 @@
+v1.7.11
+-------
+
+Fixed:
+
+* Updated Docker image to use newer base images and fixed deprecated dependencies that were causing build failures.
+* Updated Node.js and npm package dependencies to resolve security vulnerabilities and compatibility issues.
+* Fixed TypeScript type errors in `RaceWeekend.ts` and `SummernoteWrapper.ts`.
+* Updated Go module dependencies to their latest compatible versions.
+* Updated build tooling (Makefile, gulpfile.js, tsconfig.json) for compatibility with newer Node.js versions.
+
+---
+
+
 v1.7.10
 -------
 
@@ -15,7 +29,7 @@ Fixed:
 
 
 v1.7.9
-------
+------A
 
 Added:
 

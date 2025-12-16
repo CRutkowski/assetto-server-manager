@@ -20,7 +20,7 @@ assets:
 	$(MAKE) -C typescript build
 
 asset-embed:
-	go get -u github.com/mjibson/esc
+	go install github.com/mjibson/esc@latest
 	go generate ./...
 
 deploy: clean assets asset-embed
@@ -31,7 +31,7 @@ deploy: clean assets asset-embed
 	sed -i 's/executable_path\: acServer/executable_path\: acServer.exe/' build/windows/config.yml
 
 	# windows icon
-	go get -u github.com/akavel/rsrc
+	go install github.com/akavel/rsrc@latest
 	rsrc -ico ../../misc/windows/icon.ico -arch amd64 -o rsrc.syso
 
 	# build

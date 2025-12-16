@@ -1,9 +1,11 @@
 Assetto Server Manager
 ======================
 
-[![Build Status](https://travis-ci.org/JustaPenguin/assetto-server-manager.svg?branch=master)](https://travis-ci.org/JustaPenguin/assetto-server-manager) [![Discord](https://img.shields.io/discord/557940238991753223.svg)](https://discordapp.com/invite/6DGKJzB)
-
 A web interface to manage an Assetto Corsa Server.
+
+This repo has been forked from [JustaPenguin/assetto-server-manager](https://github.com/JustaPenguin/assetto-server-manager).
+
+The dependencies from the original project have been updated to more modern versions to fix the docker build.
 
 ## Features
 
@@ -100,8 +102,8 @@ Follow the steps below to update Server Manager:
 ## Build From Source Process
 _This is written with Linux in mind. Note that for other platforms this general flow should work, but specific commands may differ._
 
-1. Install Go 1.13; follow https://golang.org/doc/install#install
-2. Install Node js 12; this varies a lot based on os/distribution, Google is your friend.
+1. Install Go 1.25; follow https://golang.org/doc/install#install
+2. Install Node js 20; this varies a lot based on os/distribution, Google is your friend.
 3. Enter the following commands in your terminal:
 
     ```
