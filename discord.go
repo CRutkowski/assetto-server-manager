@@ -331,7 +331,7 @@ func (dm *DiscordManager) SendMessage(title string, msg string) error {
 				_, err = dm.discord.ChannelMessageSendComplex(opts.DiscordChannelID, messageSend)
 			} else {
 
-				_, err = dm.discord.ChannelMessageSendEmbed(opts.DiscordChannelID, embed.NewGenericEmbed(title, msg))
+				_, err = dm.discord.ChannelMessageSendEmbed(opts.DiscordChannelID, embed.NewGenericEmbed(title, "%s", msg))
 			}
 
 			if err != nil {
@@ -375,7 +375,7 @@ func (dm *DiscordManager) SendMessageWithLink(title string, msg string, linkText
 			_, err = dm.discord.ChannelMessageSendComplex(opts.DiscordChannelID, messageSend)
 		} else {
 
-			_, err = dm.discord.ChannelMessageSendEmbed(opts.DiscordChannelID, embed.NewGenericEmbed(title, msg+"\n"+linkMsg))
+			_, err = dm.discord.ChannelMessageSendEmbed(opts.DiscordChannelID, embed.NewGenericEmbed(title, "%s", msg+"\n"+linkMsg))
 		}
 
 		if err != nil {

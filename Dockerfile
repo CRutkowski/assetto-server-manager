@@ -1,20 +1,20 @@
-FROM golang:1.15 AS build
+FROM golang:1.24 AS build
 
 ARG SM_VERSION
 ENV DEBIAN_FRONTEND noninteractive
 ENV BUILD_DIR ${GOPATH}/src/github.com/JustaPenguin/assetto-server-manager
 ENV GO111MODULE on
 
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt-get update && apt-get install -y build-essential libssl-dev curl nodejs tofrodos dos2unix zip
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get update && apt-get install -y build-essential libssl-dev curl nodejs tofrodos dos2unix zip python3 python-is-python3
 
 ADD . ${BUILD_DIR}
 WORKDIR ${BUILD_DIR}
-RUN rm -rf cmd/server-manager/typescript/node_modules
+RUN rm -rf cmd/server-manager/typescript/node_modules cmd/server-manager/typescript/package-lock.json
 RUN VERSION=${SM_VERSION} make deploy
 RUN mv cmd/server-manager/build/linux/server-manager /usr/bin/
 
-FROM ubuntu:18.04 AS run
+FROM ubuntu:22.04 AS run
 MAINTAINER Callum Jones <cj@icj.me>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -28,8 +28,8 @@ ENV STEAMCMD_URL="http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
 ENV STEAMROOT=/opt/steamcmd
 
 # steamcmd
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
-RUN apt-get update && apt-get install -y build-essential libssl-dev curl lib32gcc1 lib32stdc++6 nodejs
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
+RUN apt-get update && apt-get install -y build-essential libssl-dev curl lib32gcc-s1 lib32stdc++6 nodejs
 RUN mkdir -p ${STEAMROOT}
 WORKDIR ${STEAMROOT}
 RUN curl -s ${STEAMCMD_URL} | tar -vxz
@@ -39,7 +39,7 @@ ENV PATH "${STEAMROOT}:${PATH}"
 RUN steamcmd.sh +login anonymous +quit; exit 0
 
 # dependencies for plugins, e.g. stracker, kissmyrank
-RUN apt-get update && apt-get install -y lib32gcc1 lib32stdc++6 zlib1g zlib1g lib32z1 ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y lib32gcc-s1 lib32stdc++6 zlib1g zlib1g lib32z1 ca-certificates && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash ${SERVER_USER}
 

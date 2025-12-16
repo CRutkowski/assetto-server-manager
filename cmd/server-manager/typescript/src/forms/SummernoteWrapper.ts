@@ -10,6 +10,7 @@ export class SummernoteWrapper {
     }
 
     public render(): void {
+        // @ts-ignore - FileList vs Blob[] type mismatch in summernote types
         this.opts.callbacks = {
             onImageUpload: (files: FileList) => {
                 for (let file of files) {

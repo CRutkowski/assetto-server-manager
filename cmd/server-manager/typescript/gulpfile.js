@@ -5,9 +5,11 @@ let tsify = require('tsify');
 let sourcemaps = require('gulp-sourcemaps');
 let buffer = require('vinyl-buffer');
 let uglify = require('gulp-uglify-es').default;
-let sass = require("gulp-sass");
+let gulpSass = require("gulp-sass");
+let dartSass = require("sass");
+let sass = gulpSass(dartSass);
 let autoPrefixer = require("gulp-autoprefixer");
-let fsCache = require( 'gulp-fs-cache' );
+let fsCache = require('gulp-fs-cache');
 
 gulp.task('build-js', buildJS);
 gulp.task("build-sass", buildSass);
@@ -17,17 +19,17 @@ gulp.task('watch', () => {
     gulp.watch("./sass/**/*.scss", buildSass);
 });
 
-gulp.task("copy", function() {
+gulp.task("copy", function () {
     return gulp.src("./node_modules/summernote/dist/font/*")
         .pipe(gulp.dest("../static/css/font"))
-    ;
+        ;
 });
 
 gulp.task('build', gulp.series('build-js', 'build-sass', 'copy'));
 gulp.task('default', gulp.series('build', 'watch'));
 
 function buildJS() {
-    let jsCache = fsCache( '.gulp-cache/js' );
+    let jsCache = fsCache('.gulp-cache/js');
 
     try {
         return browserify({
@@ -42,11 +44,11 @@ function buildJS() {
                 presets: ['@babel/preset-env'],
                 extensions: ['.ts']
             })
-            .transform({global: true}, 'browserify-shim')
+            .transform({ global: true }, 'browserify-shim')
             .bundle()
             .pipe(source('bundle.js'))
             .pipe(buffer())
-            .pipe(sourcemaps.init({loadMaps: true}))
+            .pipe(sourcemaps.init({ loadMaps: true }))
             .pipe(jsCache)
             .pipe(uglify())
             .pipe(jsCache.restore)
@@ -72,7 +74,7 @@ function buildSass() {
         }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest("../static/css/"))
-    ;
+        ;
 
     return gulp.src("./sass/server-manager-dark.scss")
         .pipe(sourcemaps.init())
@@ -87,5 +89,5 @@ function buildSass() {
         }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest("../static/css/"))
-    ;
+        ;
 }
